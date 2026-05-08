@@ -9,9 +9,8 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git branch: 'main',
-                    credentialsId: 'Afrinriswana12'
-                    url: 'https://github.com/Afrinriswana12/BMICalculator.git'
+                git url: 'https://github.com/Afrinriswana12/BMICalculator.git',
+                    branch: 'main'
             }
         }
 
@@ -24,12 +23,6 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'mvn test'
-            }
-
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
             }
         }
 
